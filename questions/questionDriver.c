@@ -7,21 +7,32 @@
 //
 
 #include "questions.h"
-
+struct mainSection{
+    int score, questions;
+    int sectionScore[5];
+    int sectionQuestions[5];
+    
+} s;
+struct mathSection{
+   char *sectionName;
+    int sNum;       // section number
+   int randCtrl;
+    
+} m;
 int questionDriver(char *message) {
-    int score = 0, questions = 0;
-    int sectionScore[]={0,0,0,0,0};
-    int sectionQuestions[]={0,0,0,0,0};
+    s.score = 0;
+    s.questions = 0;
+    s.sectionQuestions[5]={0,0,0,0,0};
     srand((uint)time(0));
     
     { // Math
-        char *sectionName = "Math";
-        int sNum = 0;       // section number
-        int randCtrl = 5 + 1;
+        *m.sectionName = "Math";
+        m.sNum = 0;       // section number
+        m.randCtrl = 5 + 1;
         
-        sectionQuestions[sNum] = rand() % randCtrl;  questions += sectionQuestions[sNum];
-        sectionScore[sNum] = mathQuestions(sectionQuestions[sNum]); score += sectionScore[sNum];
-        printf("Your %s score is %d out of %d\n\n", sectionName, sectionScore[sNum], sectionQuestions[sNum] );
+        s.sectionQuestions[m.sNum] = rand() % m.randCtrl;  s.questions += s.sectionQuestions[sNum];
+        s.sectionScore[sNum] = mathQuestions(s.sectionQuestions[m.sNum]); s.score += s.sectionScore[sNum];
+        printf("Your %s score is %d out of %d\n\n", m.sectionName, s.sectionScore[sNum], sectionQuestions[sNum] );
     }
     
     { // Binary Math
@@ -79,4 +90,5 @@ int questionDriver(char *message) {
     printf("Your score is %s\n", message);
     
     return questions;
+    
 }
